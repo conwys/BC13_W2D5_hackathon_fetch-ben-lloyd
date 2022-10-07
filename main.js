@@ -57,8 +57,17 @@ function concatAPI(catValue, diffValue) {
 }
 
 async function startQuiz() {
-    console.log(concatAPI())
+
     let quizGame = await fetch(concatAPI());
     let quizGameData = await quizGame.json();
-    console.log(quizGameData);
+    let quizDiv = document.querySelector('option-container');
+    const quizAnswer = document.createElement('input');
+    
+    let questions = quizGameData.results;
+    for (let i=0;i<questions.length;i++) {
+        let currentQuestion = questions[i].question;
+        let currentCorrectAnswer = questions[i].correct_answer;
+
+
+    }
 }

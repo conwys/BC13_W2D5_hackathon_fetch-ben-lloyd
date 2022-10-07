@@ -5,11 +5,21 @@
     font-weight: 300;
 }
 
+#title {
+    margin-right: 4rem;
+}
+
 .quiz-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10rem;
+}
+
+.title-container {
+    height: 213.5px;
+    padding: 5rem;
+    background-color: rgb(118, 192, 235);
 }
 
 .option-container {
