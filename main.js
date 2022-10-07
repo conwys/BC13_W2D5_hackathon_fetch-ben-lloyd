@@ -3,7 +3,10 @@ const difficultySelector = document.getElementById('difficulty');
 const questionCount = document.querySelector('input');
 
 categorySelector.addEventListener("change", () => {
-    let catValue = categorySelector.selectedIndex;
+    let catValue = categorySelector.selectedIndex + 8;
+    if (catValue <= 8) {
+        catValue=0;
+    }
     console.log(catValue);
 });
 
@@ -12,24 +15,24 @@ difficultySelector.addEventListener("change",() => {
     console.log(diffValue);
 });
 
-async function startQuiz(catValue, diffValue) {
+function concatAPI(catValue, diffValue) {
     diffValue = difficultySelector.options[difficultySelector.selectedIndex].text;
     diffValue = diffValue.toLowerCase();
-    catValue = categorySelector.selectedIndex;
+    catValue = (categorySelector.selectedIndex) + 8;
     let questionNum = questionCount.value;
     let questionStr = "?amount=";
     let catStr = "&category=";
     let diffStr = "&difficulty=";
     let defaultAPI = 'https://opentdb.com/api.php';
 
-    if (catValue==="Any Category") {
+    if (catValue<=8) {
         catValue="";
         catStr="";
     } else {
         catStr=(catStr)+(catValue);
     }
 
-    if (diffValue==="Any Difficulty") {
+    if (diffValue==="any difficulty") {
         diffValue="";
         diffStr="";
     } else {
@@ -49,6 +52,13 @@ async function startQuiz(catValue, diffValue) {
 
     let finalAPI = defaultAPI+questionStr+catStr+diffStr;
 
-    console.log(finalAPI)
+    return finalAPI;
     
+}
+
+async function startQuiz() {
+    console.log(concatAPI())
+    let quizGame = await fetch(concatAPI());
+    let quizGameData = await quizGame.json();
+    console.log(quizGameData);
 }
