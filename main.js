@@ -14,11 +14,35 @@ difficultySelector.addEventListener("change",() => {
 
 async function startQuiz(catValue, diffValue) {
     let questionNum = questionCount.value;
-    let defaultAPI = 'https://opentdb.com/api.php?amount=10';
+    let questionStr = "?amount=";
+    let catStr = "&category=";
+    let diffStr = "&difficulty=";
+    let defaultAPI = 'https://opentdb.com/api.php';
+
     if (catValue==="Any Category") {
         catValue="";
-    } else if (diffValue==="Any Difficulty") {
-        diffValue="";
+        catStr="";
+    } else {
+        catStr=(catStr)+(catValue);
     }
+
+    if (diffValue==="Any Difficulty") {
+        diffValue="";
+        diffStr="";
+    } else {
+        diffStr=(diffStr)+(diffValue);
+    }
+    
+    if (questionNum===0) {
+        questionNum=10;
+        questionStr=+questionNum;
+    } else {
+        questionStr=(questionStr)+(questionNum);
+    }
+
+
+    let finalAPI = defaultAPI+questionStr+catStr+diffStr;
+
+    console.log(finalAPI)
     
 }
