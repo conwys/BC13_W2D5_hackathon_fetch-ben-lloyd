@@ -58,6 +58,8 @@ function concatAPI(catValue, diffValue) {
 
 async function startQuiz() {
 
+    let time=30;
+
     let quizButton = document.querySelector('button');
     quizButton.style.display = 'none';
 
@@ -67,29 +69,41 @@ async function startQuiz() {
     const quizInstance = document.createElement('div');
     let quizQuestionLabel = document.createElement('p');
     const quizAnswer = document.createElement('input');
+    const quizAnswerButton = document.createElement('button');
     let quizTimer = document.createElement('p');
     
     quizContainer.appendChild(quizInstance);
+    quizInstance.appendChild(quizTimer);
     quizInstance.appendChild(quizQuestionLabel);
     quizInstance.appendChild(quizAnswer);
-    quizInstance.appendChild(quizTimer);
+    quizInstance.appendChild(quizAnswerButton);
 
     quizInstance.id="quizInstance";
     quizQuestionLabel.id="questionLabel";
     quizAnswer.id="questionInput";
     quizAnswer.placeholder="Enter answer here.."
+    quizAnswerButton.textContent="Submit";
+    quizAnswerButton.id="answerButton"
+    quizAnswerButton.onclick="checkAnswer()"
     quizTimer.id="quizTimer";
 
     quizQuestionLabel.textContent="Question will appear here!"
+    quizTimer.textContent=time;
     
     let questions = quizGameData.results;
 
     console.log(questions);
 
-    for (let i=0;i<questions.length;i++) {
-        let currentQuestion = questions[i].question;
-        let currentCorrectAnswer = questions[i].correct_answer;
-
-
-    }
+    setTimeout(() => {
+        for(let i = 0; i < questions.length; i++) {
+            let currentQuestion = questions[i].question;
+            let currentCorrectAnswer = questions[i].correct_answer;
+            quizQuestionLabel.textContent=currentQuestion;
+            console.log(currentQuestion)
+        }
+    }, 30000)
+    setInterval(() => {
+        time--;
+        quizTimer.textContent=time;
+    }, 1000);
 }

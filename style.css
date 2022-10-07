@@ -100,4 +100,14 @@ button:hover {
 
 #questionInput {
     margin: 20px;
+    width: 65%;
+    height: 2rem;
+}
+
+#answerButton {
+    margin: 20px;
+}
+
+#quizTimer {
+    margin: 20px;
 }
