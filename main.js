@@ -58,12 +58,34 @@ function concatAPI(catValue, diffValue) {
 
 async function startQuiz() {
 
+    let quizButton = document.querySelector('button');
+    quizButton.style.display = 'none';
+
     let quizGame = await fetch(concatAPI());
     let quizGameData = await quizGame.json();
-    let quizDiv = document.querySelector('option-container');
+    const quizContainer = document.querySelector('.quiz-container');
+    const quizInstance = document.createElement('div');
+    let quizQuestionLabel = document.createElement('p');
     const quizAnswer = document.createElement('input');
+    let quizTimer = document.createElement('p');
+    
+    quizContainer.appendChild(quizInstance);
+    quizInstance.appendChild(quizQuestionLabel);
+    quizInstance.appendChild(quizAnswer);
+    quizInstance.appendChild(quizTimer);
+
+    quizInstance.id="quizInstance";
+    quizQuestionLabel.id="questionLabel";
+    quizAnswer.id="questionInput";
+    quizAnswer.placeholder="Enter answer here.."
+    quizTimer.id="quizTimer";
+
+    quizQuestionLabel.textContent="Question will appear here!"
     
     let questions = quizGameData.results;
+
+    console.log(questions);
+
     for (let i=0;i<questions.length;i++) {
         let currentQuestion = questions[i].question;
         let currentCorrectAnswer = questions[i].correct_answer;

@@ -23,6 +23,7 @@
 }
 
 .option-container {
+    height: 213.5px;
     padding: 5rem;
     background-color: rgb(31, 31, 31);
 }
@@ -79,4 +80,24 @@ button:hover {
     border: 2px solid rgb(118, 192, 235);
     color: rgb(118, 192, 235);
     transition: 1s;
+}
+
+
+/* quiz */
+
+#quizInstance {
+    width: 1000px;
+    background-color: rgb(31, 31, 31);
+    position: relative;
+    height: 213.5px;
+    padding: 5rem;
+    display: flexbox;
+}
+
+#questionLabel {
+    margin: 20px;
+}
+
+#questionInput {
+    margin: 20px;
 }
