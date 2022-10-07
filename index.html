@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Hackathon</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="option-container">
+            <h1>School of Code Gameshow!</h1>
+            <br>
+            <label for="category">Category:</label>
+            <select name="category" id="category">
+                <option value="anyCat" selected>Any Category</option>
+                <option value="gk">General Knowledge</option>
+                <option value="spr">Sport</option>
+                <option value="geo">Geography</option>
+                <option value="his">History</option>
+                <option value="comp">Computers</option>
+                <option value="celeb">Celebrities</option>
+            </select>
+            <br>
+            <br>
+            <label for="difficulty">Difficulty:</label>
+            <select name="difficulty" id="difficulty">
+                <option value="anyDiff" selected>Any Difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <br>
+            <br>
+            <label for="questionCount">Question Count:</label>
+            <input name="questionCount" id="questionCount" placeholder="10">
+            <br>
+            <br>
+            <br>
+            <button name="startQuiz" id="startQuiz" onclick="startQuiz()">Start Quiz!</button>
+        </div>
+        <div class="question-prompt">
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
