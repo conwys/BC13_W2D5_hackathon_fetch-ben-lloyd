@@ -3,7 +3,7 @@ const difficultySelector = document.getElementById('difficulty');
 const questionCount = document.querySelector('input');
 
 categorySelector.addEventListener("change", () => {
-    let catValue = categorySelector.options[categorySelector.selectedIndex].text;
+    let catValue = categorySelector.selectedIndex;
     console.log(catValue);
 });
 
@@ -13,6 +13,9 @@ difficultySelector.addEventListener("change",() => {
 });
 
 async function startQuiz(catValue, diffValue) {
+    diffValue = difficultySelector.options[difficultySelector.selectedIndex].text;
+    diffValue = diffValue.toLowerCase();
+    catValue = categorySelector.selectedIndex;
     let questionNum = questionCount.value;
     let questionStr = "?amount=";
     let catStr = "&category=";
@@ -33,9 +36,12 @@ async function startQuiz(catValue, diffValue) {
         diffStr=(diffStr)+(diffValue);
     }
     
-    if (questionNum===0) {
+    if (questionNum==="0") {
         questionNum=10;
-        questionStr=+questionNum;
+        questionStr=(questionStr)+(questionNum);
+    } else if (questionNum==="") {
+        questionNum=10;
+        questionStr=(questionStr)+(questionNum);
     } else {
         questionStr=(questionStr)+(questionNum);
     }
