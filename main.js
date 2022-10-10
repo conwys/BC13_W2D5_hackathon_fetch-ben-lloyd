@@ -59,6 +59,7 @@ function concatAPI(catValue, diffValue) {
 async function startQuiz() {
 
     let time=30;
+    let score=0;
 
     let quizButton = document.querySelector('button');
     quizButton.style.display = 'none';
@@ -94,16 +95,44 @@ async function startQuiz() {
 
     console.log(questions);
 
-    setTimeout(() => {
-        for(let i = 0; i < questions.length; i++) {
-            let currentQuestion = questions[i].question;
-            let currentCorrectAnswer = questions[i].correct_answer;
-            quizQuestionLabel.textContent=currentQuestion;
-            console.log(currentQuestion)
+    let firstQuestion = questions[0].question;
+    let firstQuestionAnswer = questions[0].correct_answer;
+    quizQuestionLabel.textContent=firstQuestion;
+
+    var index = 1;
+    var interval = setInterval(function(){
+        let currentQuestion = questions[index++].question;
+        let currentCorrectAnswer = questions[index++].correct_answer;
+        quizQuestionLabel.textContent=currentQuestion;
+
+        function checkAnswer() {
+            let inputtedAnswer = document.querySelector('#answerButton');
+            if (inputtedAnswer==currentCorrectAnswer) {
+                score++;
+                console.log('Correct answer!');
+            }
         }
-    }, 30000)
+
+        console.log(currentQuestion)
+        if(index == questions.length){
+            clearInterval(interval);
+        }
+    }, 31000)
+
     setInterval(() => {
-        time--;
+        if (time<=0) {
+            time=30;
+        } else {
+            time--;
+        }
         quizTimer.textContent=time;
     }, 1000);
+}
+
+function checkAnswer(answerResponse, currentCorrectAnswer) {
+    const questionResponseInput = document.getElementById('questionInput');
+    let userResponse = questionResponseInput.value;
+    if (userResponse===currentCorrectAnswer) {
+        null;
+    }
 }
